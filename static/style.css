@@ -29,6 +29,12 @@ body::before {
     background-size: auto, 18px 18px;
 }
 
+.site-nav { width: min(1100px, calc(100% - 48px)); margin: 0 auto; padding: 28px 0; display: flex; justify-content: space-between; align-items: center; font-size: .85rem; }
+.site-nav a { color: var(--ink); text-decoration: none; }
+.brand { font-weight: 700; letter-spacing: .1em; }
+.account-links { display: flex; align-items: center; gap: 20px; color: var(--muted); }
+.nav-button { padding: 10px 14px; color: #fff !important; background: var(--ink); }
+
 .weather-app {
     width: min(1100px, calc(100% - 48px));
     margin: auto;
@@ -65,9 +71,21 @@ button:hover { background: var(--accent); border-color: var(--accent); }
 .status { color: var(--muted); font-size: .85rem; }
 .status-dot { display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%; background: #5b9d72; }
 .error { margin-top: 32px; padding: 14px; color: #9a3422; background: #fff0eb; }
+.auth-page { width: min(100% - 32px, 480px); margin: auto; padding: 50px 0 80px; }
+.auth-panel { padding: 34px; background: var(--panel); border: 1px solid var(--line); box-shadow: 10px 10px 0 rgba(23, 35, 31, .08); }
+.auth-panel h1 { margin-bottom: 28px; font-size: clamp(2.8rem, 9vw, 4.8rem); }
+.auth-form { display: grid; }
+.auth-form label { margin: 16px 0 8px; }
+.auth-form input { min-height: 50px; padding: 0 14px; border: 1px solid var(--line); background: #fff; font: inherit; }
+.auth-form button { margin-top: 26px; }
+.flash { padding: 12px; font-size: .9rem; }
+.flash.error { color: #9a3422; background: #fff0eb; }
+.flash.success { color: #27643e; background: #eaf6ed; }
 footer { padding: 20px 24px; color: var(--muted); text-align: center; font-size: .8rem; }
 
 @media (max-width: 700px) {
+    .site-nav { width: calc(100% - 32px); align-items: flex-start; gap: 18px; }
+    .account-links { gap: 10px; text-align: right; flex-wrap: wrap; justify-content: flex-end; }
     .weather-app { width: min(100% - 32px, 500px); padding: 48px 0 32px; grid-template-columns: 1fr; gap: 48px; }
     h1 { font-size: clamp(3.1rem, 15vw, 5rem); }
     .weather-panel { padding: 22px; box-shadow: 7px 7px 0 rgba(23, 35, 31, .08); }

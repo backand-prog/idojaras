@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <nav class="site-nav">
+        <a class="brand" href="{{ url_for('index') }}">WEATHER / EUROPE</a>
+        <div class="account-links">
+            {% if session.get('username') %}
+            <span>Szia, {{ session['username'] }}!</span>
+            <a href="{{ url_for('logout') }}">Kilépés</a>
+            {% else %}
+            <a href="{{ url_for('login') }}">Belépés</a>
+            <a class="nav-button" href="{{ url_for('register') }}">Regisztráció</a>
+            {% endif %}
+        </div>
+    </nav>
     <main class="weather-app">
         <section class="intro">
             <p class="eyebrow">EUROPEAN WEATHER DESK</p>

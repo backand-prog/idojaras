@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Regisztráció | Európai időjárás</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="site-nav">
+        <a class="brand" href="{{ url_for('index') }}">WEATHER / EUROPE</a>
+        <a href="{{ url_for('login') }}">Már van fiókod?</a>
+    </nav>
+    <main class="auth-page">
+        <section class="auth-panel">
+            <p class="eyebrow">ÚJ FELHASZNÁLÓ</p>
+            <h1>Regisztráció</h1>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}<p class="flash {{ category }}">{{ message }}</p>{% endfor %}
+            {% endwith %}
+            <form method="post" class="auth-form">
+                <label for="username">Felhasználónév</label>
+                <input id="username" name="username" type="text" minlength="3" required autocomplete="username">
+                <label for="password">Jelszó</label>
+                <input id="password" name="password" type="password" minlength="8" required autocomplete="new-password">
+                <label for="password_confirmation">Jelszó újra</label>
+                <input id="password_confirmation" name="password_confirmation" type="password" minlength="8" required autocomplete="new-password">
+                <button type="submit">Fiók létrehozása <span aria-hidden="true">↗</span></button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
