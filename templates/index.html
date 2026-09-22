@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Európai időjárás</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="weather-app">
+        <section class="intro">
+            <p class="eyebrow">EUROPEAN WEATHER DESK</p>
+            <h1>Időjárás,<br><em>városról városra.</em></h1>
+            <p class="lede">Válassz egy európai fővárost, és nézd meg az aktuális hőmérsékletet.</p>
+        </section>
+
+        <section class="weather-panel" aria-label="Időjárás lekérdezése">
+            <div class="panel-topline"><span>AKTUÁLIS ADAT</span><span>WTTR.IN</span></div>
+            <form method="get">
+                <label for="city">Főváros</label>
+                <div class="select-row">
+                    <select id="city" name="city">
+                        {% for capital in capitals %}
+                        <option value="{{ capital }}" {% if capital == city %}selected{% endif %}>{{ capital }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Mutasd <span aria-hidden="true">↗</span></button>
+                </div>
+            </form>
+
+            {% if temperature is not none %}
+            <div class="result">
+                <p class="result-label">MOST {{ city|upper }} VÁROSÁBAN</p>
+                <p class="temperature">{{ temperature }}<span>°C</span></p>
+                <div class="status"><span class="status-dot"></span> Friss adat elérhető</div>
+            </div>
+            {% elif error %}
+            <p class="error" role="alert">{{ error }}</p>
+            {% endif %}
+        </section>
+    </main>
+    <footer>Egyszerű időjárás-kereső &middot; európai fővárosok</footer>
+</body>
+</html>
